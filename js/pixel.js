@@ -19,11 +19,11 @@ $(document).ready(function () {
     // Boucle d'initialisation de la grille
     while (pHid < pH) {
         while (pWid < pW) {
-            pTh = '<th class="pPixel" id="pW' + pThid + pWid + '"></th>';
+            pTh = '<th class="pPixel" id="pW' + pThid + 'id' + pWid + '"></th>';
             pThvalue = pThvalue + pTh;
             pWid++;
         }
-        $('#pTable').append('<tr id="pH' + pTrid + pHid + '">' + pThvalue + '</tr>');
+        $('#pTable').append('<tr id="pH' + pTrid + 'id' + pHid + '">' + pThvalue + '</tr>');
         pWid = 0;
         pThvalue = '';
         pThid++;
