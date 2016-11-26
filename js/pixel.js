@@ -80,7 +80,11 @@ $(document).ready(function () {
         pColor = this.value;
     });
 
+    $("input[name='pReset']").click(function () {
+        $('.pPixel').css({"background-color": "#fff", "opacity": "0"});
+    });
+
     $(document).on('click', '.pPixel',function () {
-        $(this).css("background-color", pColor);
+        $(this).css({"background-color": pColor, "opacity": "1"});
     })
 });
