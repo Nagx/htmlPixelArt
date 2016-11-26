@@ -31,7 +31,6 @@ $(document).ready(function () {
 
     addH();
     // Fin de fonction
-
     pHid = pH;
     // Fonctions en cas de changement de valeur des boutons
     $("input[name='pH']").change(function () {
@@ -51,7 +50,6 @@ $(document).ready(function () {
                 addH();
             }
         }
-
     });
 
     $("input[name='pW']").change(function () {
@@ -59,8 +57,6 @@ $(document).ready(function () {
             this.attr('value', '1');
         }
         pW = this.value;
-        console.log(pW);
-        console.log(pWid);
         if (pW < pWid){
             while (pW < pWid){
                 $('#pTable tr td:last-child').remove();
@@ -73,11 +69,6 @@ $(document).ready(function () {
                 $('#pTable tr').append('<td class="pPixel" id="pW' + 'id' + pWid + '"></td>');
             }
         }
-        console.log(pW);
-        console.log(pWid);
-
-
-
     });
 
     $("input[name='pSize']").change(function () {
@@ -87,8 +78,9 @@ $(document).ready(function () {
 
     $("input[name='pColor']").change(function () {
         pColor = this.value;
-
     });
 
-
+    $(document).on('click', '.pPixel',function () {
+        $(this).css("background-color", pColor);
+    })
 });
