@@ -8,39 +8,74 @@ $(document).ready(function () {
     // Variables des valeurs couleur et pixel
     var pSize = $("input[name='pSize']").val();
     var pColor = $("input[name='pColor']").val();
-    // Variables pour définir un id unique à chaque 'th'
-    var pThid = 0;
-    var pTrid = 0;
     // Variables du contenu des 'th'
     var pTh = '';
     var pThvalue = '';
 
 
-    // Boucle d'initialisation de la grille
-    while (pHid < pH) {
-        while (pWid < pW) {
-            pTh = '<th class="pPixel" id="pW' + pThid + 'id' + pWid + '"></th>';
-            pThvalue = pThvalue + pTh;
-            pWid++;
+    // Fonction d'initialisation de la grille
+    function addH() {
+        while (pHid < pH) {
+            while (pWid < pW) {
+                pTh = '<td class="pPixel" id="pW' + 'id' + pWid + '"></td>';
+                pThvalue = pThvalue + pTh;
+                pWid++;
+            }
+            $('#pTable').append('<tr id="pH' + pHid + '">' + pThvalue + '</tr>');
+            pWid = 0;
+            pThvalue = '';
+            pHid++;
         }
-        $('#pTable').append('<tr id="pH' + pTrid + 'id' + pHid + '">' + pThvalue + '</tr>');
-        pWid = 0;
-        pThvalue = '';
-        pThid++;
-        pHid++;
+        pWid = pW;
     }
-    pWid = pW;
-    // Fin de boucle
 
+    addH();
+    // Fin de fonction
+
+    pHid = pH;
     // Fonctions en cas de changement de valeur des boutons
     $("input[name='pH']").change(function () {
-        pHid = pH;
+        if (this.value < 0) {
+            this.attr('value', '1');
+        }
         pH = this.value;
+        if (pH < pHid) {
+            while (pH < pHid) {
+                $('#pTable tr:last').remove();
+                pHid--;
+            }
+        }
+        if (pH > pHid) {
+            while (pH > pHid) {
+                pWid = 0;
+                addH();
+            }
+        }
+
     });
 
     $("input[name='pW']").change(function () {
-        pWid = pW;
+        if (this.value < 0) {
+            this.attr('value', '1');
+        }
         pW = this.value;
+        console.log(pW);
+        console.log(pWid);
+        if (pW < pWid){
+            while (pW < pWid){
+                $('#pTable tr td:last-child').remove();
+                pWid--;
+            }
+        }
+        if (pW > pWid){
+            while (pW > pWid){
+                pWid++;
+                $('#pTable tr').append('<td class="pPixel" id="pW' + 'id' + pWid + '"></td>');
+            }
+        }
+        console.log(pW);
+        console.log(pWid);
+
 
 
     });

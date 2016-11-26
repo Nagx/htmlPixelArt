@@ -1,4 +1,4 @@
-#pTable, #pTable th {
+#pTable, #pTable td {
     border: solid black 1px;
     border-collapse: collapse;
 }
