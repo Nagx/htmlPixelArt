@@ -17,7 +17,7 @@ $(document).ready(function () {
     function addH() {
         while (pHid < pH) {
             while (pWid < pW) {
-                pTh = '<td class="pPixel" id="pW' + 'id' + pWid + '"></td>';
+                pTh = '<td class="pPixel pColorX" id="pW' + 'id' + pWid + '"></td>';
                 pThvalue = pThvalue + pTh;
                 pWid++;
             }
@@ -67,7 +67,7 @@ $(document).ready(function () {
         if (pW > pWid) {
             while (pW > pWid) {
 
-                $('#pTableGrid tr').append('<td class="pPixel" id="pW' + 'id' + pWid + '"></td>');
+                $('#pTableGrid tr').append('<td class="pPixel pColorX" id="pW' + 'id' + pWid + '"></td>');
                 pWid++;
             }
         }
@@ -94,17 +94,16 @@ $(document).ready(function () {
 
     // Fonction remise à zéro de la grille
     $("input[name='pReset']").click(function () {
-        $('.pPixel').css({"background": "#fff", "opacity": "0"});
+        $('#pTableGrid td').addClass('pColorX').css("background", "").removeAttr('style');;
     });
 
     // Fonction de coloration des cases
     $(document).on('click', '.pPixel', function () {
         if (pColor == 'pColorX') {
-            $(this).css("background", "");
-            $(this).addClass('pColorX');
+            $(this).removeAttr('style').addClass('pColorX');
         } else {
             $(this).removeClass('pColorX');
-            $(this).css({"background": pColor, "opacity": "1"});
+            $(this).css("background", pColor);
         }
     })
 });
