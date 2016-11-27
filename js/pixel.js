@@ -17,11 +17,11 @@ $(document).ready(function () {
     function addH() {
         while (pHid < pH) {
             while (pWid < pW) {
-                pTh = '<td class="pPixel" id="pW' + 'id' + pWid + '"></td>';
+                pTh = '<td class="pPixel pColorX" id="pW' + 'id' + pWid + '"></td>';
                 pThvalue = pThvalue + pTh;
                 pWid++;
             }
-            $('#pTable').append('<tr id="pH' + pHid + '">' + pThvalue + '</tr>');
+            $('#pTableGrid').append('<tr id="pH' + pHid + '">' + pThvalue + '</tr>');
             pWid = 0;
             pThvalue = '';
             pHid++;
@@ -32,7 +32,7 @@ $(document).ready(function () {
     addH();
     // Fin de fonction
     pHid = pH;
-    // Fonctions en cas de changement de valeur des boutons
+    // Fonctions en cas de changement de valeur dd Hauteur de grille
     $("input[name='pH']").change(function () {
         if (this.value < 0) {
             this.attr('value', '1');
@@ -40,7 +40,7 @@ $(document).ready(function () {
         pH = this.value;
         if (pH < pHid) {
             while (pH < pHid) {
-                $('#pTable tr:last').remove();
+                $('#pTableGrid tr:last').remove();
                 pHid--;
             }
         }
@@ -52,39 +52,58 @@ $(document).ready(function () {
         }
     });
 
+    // Fonctions en cas de changement de valeur dd Largeur de grille
     $("input[name='pW']").change(function () {
         if (this.value < 0) {
             this.attr('value', '1');
         }
         pW = this.value;
-        if (pW < pWid){
-            while (pW < pWid){
-                $('#pTable tr td:last-child').remove();
+        if (pW < pWid) {
+            while (pW < pWid) {
+                $('#pTableGrid tr td:last-child').remove();
                 pWid--;
             }
         }
-        if (pW > pWid){
-            while (pW > pWid){
+        if (pW > pWid) {
+            while (pW > pWid) {
+
+                $('#pTableGrid tr').append('<td class="pPixel pColorX" id="pW' + 'id' + pWid + '"></td>');
                 pWid++;
-                $('#pTable tr').append('<td class="pPixel" id="pW' + 'id' + pWid + '"></td>');
             }
         }
     });
 
+    // Fonction de changement de taille des cases
     $("input[name='pSize']").change(function () {
         pSize = this.value;
         $('.pPixel').css({"min-width": pSize + "px", "height": pSize + "px"});
     });
 
+    // Fonctions changement de couleur
     $("input[name='pColor']").change(function () {
         pColor = this.value;
     });
 
-    $("input[name='pReset']").click(function () {
-        $('.pPixel').css({"background-color": "#fff", "opacity": "0"});
+    $('#pTableColor td').click(function () {
+        pColor = $(this).css("background-color");
     });
 
-    $(document).on('click', '.pPixel',function () {
-        $(this).css({"background-color": pColor, "opacity": "1"});
+    $('#pColorX').click(function () {
+        pColor = $(this).attr('class');
+    });
+
+    // Fonction remise à zéro de la grille
+    $("input[name='pReset']").click(function () {
+        $('#pTableGrid td').addClass('pColorX').css("background", "").removeAttr('style');;
+    });
+
+    // Fonction de coloration des cases
+    $(document).on('click', '.pPixel', function () {
+        if (pColor == 'pColorX') {
+            $(this).removeAttr('style').addClass('pColorX');
+        } else {
+            $(this).removeClass('pColorX');
+            $(this).css("background", pColor);
+        }
     })
 });
