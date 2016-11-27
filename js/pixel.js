@@ -73,7 +73,7 @@ $(document).ready(function () {
 
     $("input[name='pSize']").change(function () {
         pSize = this.value;
-        $('.pPixel').css({"width": pSize + "px", "height": pSize + "px"});
+        $('.pPixel').css({"min-width": pSize + "px", "height": pSize + "px"});
     });
 
     $("input[name='pColor']").change(function () {
