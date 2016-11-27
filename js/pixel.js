@@ -65,8 +65,9 @@ $(document).ready(function () {
         }
         if (pW > pWid){
             while (pW > pWid){
-                pWid++;
+
                 $('#pTable tr').append('<td class="pPixel" id="pW' + 'id' + pWid + '"></td>');
+                pWid++;
             }
         }
     });
