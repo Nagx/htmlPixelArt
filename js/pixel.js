@@ -32,7 +32,7 @@ $(document).ready(function () {
     addH();
     // Fin de fonction
     pHid = pH;
-    // Fonctions en cas de changement de valeur des boutons
+    // Fonctions en cas de changement de valeur dd Hauteur de grille
     $("input[name='pH']").change(function () {
         if (this.value < 0) {
             this.attr('value', '1');
@@ -52,19 +52,20 @@ $(document).ready(function () {
         }
     });
 
+    // Fonctions en cas de changement de valeur dd Largeur de grille
     $("input[name='pW']").change(function () {
         if (this.value < 0) {
             this.attr('value', '1');
         }
         pW = this.value;
-        if (pW < pWid){
-            while (pW < pWid){
+        if (pW < pWid) {
+            while (pW < pWid) {
                 $('#pTableGrid tr td:last-child').remove();
                 pWid--;
             }
         }
-        if (pW > pWid){
-            while (pW > pWid){
+        if (pW > pWid) {
+            while (pW > pWid) {
 
                 $('#pTableGrid tr').append('<td class="pPixel" id="pW' + 'id' + pWid + '"></td>');
                 pWid++;
@@ -72,11 +73,13 @@ $(document).ready(function () {
         }
     });
 
+    // Fonction de changement de taille des cases
     $("input[name='pSize']").change(function () {
         pSize = this.value;
         $('.pPixel').css({"min-width": pSize + "px", "height": pSize + "px"});
     });
 
+    // Fonctions changement de couleur
     $("input[name='pColor']").change(function () {
         pColor = this.value;
     });
@@ -85,11 +88,23 @@ $(document).ready(function () {
         pColor = $(this).css("background-color");
     });
 
-    $("input[name='pReset']").click(function () {
-        $('.pPixel').css({"background-color": "#fff", "opacity": "0"});
+    $('#pColorX').click(function () {
+        pColor = $(this).attr('class');
     });
 
-    $(document).on('click', '.pPixel',function () {
-        $(this).css({"background-color": pColor, "opacity": "1"});
+    // Fonction remise à zéro de la grille
+    $("input[name='pReset']").click(function () {
+        $('.pPixel').css({"background": "#fff", "opacity": "0"});
+    });
+
+    // Fonction de coloration des cases
+    $(document).on('click', '.pPixel', function () {
+        if (pColor == 'pColorX') {
+            $(this).css("background", "");
+            $(this).addClass('pColorX');
+        } else {
+            $(this).removeClass('pColorX');
+            $(this).css({"background": pColor, "opacity": "1"});
+        }
     })
 });
