@@ -21,7 +21,7 @@ $(document).ready(function () {
                 pThvalue = pThvalue + pTh;
                 pWid++;
             }
-            $('#pTable').append('<tr id="pH' + pHid + '">' + pThvalue + '</tr>');
+            $('#pTableGrid').append('<tr id="pH' + pHid + '">' + pThvalue + '</tr>');
             pWid = 0;
             pThvalue = '';
             pHid++;
@@ -40,7 +40,7 @@ $(document).ready(function () {
         pH = this.value;
         if (pH < pHid) {
             while (pH < pHid) {
-                $('#pTable tr:last').remove();
+                $('#pTableGrid tr:last').remove();
                 pHid--;
             }
         }
@@ -59,14 +59,14 @@ $(document).ready(function () {
         pW = this.value;
         if (pW < pWid){
             while (pW < pWid){
-                $('#pTable tr td:last-child').remove();
+                $('#pTableGrid tr td:last-child').remove();
                 pWid--;
             }
         }
         if (pW > pWid){
             while (pW > pWid){
 
-                $('#pTable tr').append('<td class="pPixel" id="pW' + 'id' + pWid + '"></td>');
+                $('#pTableGrid tr').append('<td class="pPixel" id="pW' + 'id' + pWid + '"></td>');
                 pWid++;
             }
         }
@@ -79,6 +79,10 @@ $(document).ready(function () {
 
     $("input[name='pColor']").change(function () {
         pColor = this.value;
+    });
+
+    $('#pTableColor td').click(function () {
+        pColor = $(this).css("background-color");
     });
 
     $("input[name='pReset']").click(function () {
