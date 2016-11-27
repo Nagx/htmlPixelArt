@@ -16,7 +16,8 @@
 }
 
 .pColorX {
-    background-image: url("../img/colorX.png");
+    background: url("../img/colorX.png") no-repeat;
+    background-size: cover;
 }
 
 #pTdColor0 {
