@@ -94,7 +94,7 @@ $(document).ready(function () {
 
     // Fonction remise à zéro de la grille
     $("input[name='pReset']").click(function () {
-        $('#pTableGrid td').addClass('pColorX').css("background", "").removeAttr('style');;
+        $('#pTableGrid td').addClass('pColorX').css("background", "").removeAttr('style');
     });
 
     // Fonction de coloration des cases
