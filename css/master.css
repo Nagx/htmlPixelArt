@@ -7,6 +7,14 @@
     min-width: 50px;
     height: 50px;
 }
+#pSGrid{
+    overflow: auto;
+}
+
+#pTableGrid {
+    margin: 30px;
+    display: inline-block;
+}
 
 #pTableColor td, #pColorX {
     border: solid black 1px;
@@ -15,16 +23,36 @@
     cursor: pointer;
 }
 
-#pPersoColor {
+#pSColor {
+    position: fixed;
+    right: 0;
+    width: 230px;
+    background-color: #0080C0;
+    text-align: center;
+}
+
+#pSColorDiv{
     width: 206px;
+    margin: 10px auto;
+
+}
+
+#pSGrid {
+    margin-right: 320px;
+    background-color: red;
+}
+
+#pPersoColor {
+    width: 208px;
     display: flex;
+    flex-wrap: wrap;
 }
 
 .pPersoColor {
     border: solid 1px black;
-    width: 21px;
-    height: 21px;
-    margin-left: 2px;
+    width: 22px;
+    height: 22px;
+    margin: 2px 0px 0px 2px;
     cursor: pointer;
 }
 
