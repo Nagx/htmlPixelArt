@@ -80,10 +80,6 @@ $(document).ready(function () {
     });
 
     // Fonctions changement de couleur
-    $("input[name='pColor']").change(function () {
-        pColor = this.value;
-    });
-
     $('#pTableColor td').click(function () {
         pColor = $(this).css("background-color");
     });
@@ -91,10 +87,19 @@ $(document).ready(function () {
     $('#pColorX').click(function () {
         pColor = $(this).attr('class');
     });
+    // Fonctions de couleurs personnelles
+    $("input[name='pColor']").change(function () {
+        pColor = this.value;
+        $('#pPersoColor').append('<div class="pPersoColor" style="background:' + pColor + ';"></div>');
+    });
+
+    $(document).on('click', '.pPersoColor', function () {
+        pColor = $(this).css("background-color");
+    });
 
     // Fonction remise à zéro de la grille
     $("input[name='pReset']").click(function () {
-        $('#pTableGrid td').addClass('pColorX').css("background", "").removeAttr('style');;
+        $('#pTableGrid td').addClass('pColorX').css("background", "").removeAttr('style');
     });
 
     // Fonction de coloration des cases
