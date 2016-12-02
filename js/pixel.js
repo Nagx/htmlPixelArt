@@ -110,5 +110,26 @@ $(document).ready(function () {
             $(this).removeClass('pColorX');
             $(this).css("background", pColor);
         }
-    })
+    });
+
+    // Fonctions de génération de code
+    $(document).on('click', '#pBGenerate', function () {
+        var tableG = $('#pSGrid').html();
+        var text = $('#pHtmlGenerate').text(tableG);
+        $(text).text(function (index, text) {
+            return text
+                .replace(/ id="\w*"/g, "")
+                .replace(/ style="m\w*">/g, '>')
+                .replace(/tr>/g, 'tr>\n')
+                .replace(/<tr/g, '\t<tr')
+                .replace(/td><td/g, 'td>\n<td')
+                .replace(/<td/g, '\t\t<td')
+                .replace(/td><\/tr/g, "td>\n</tr")
+                .replace(/<\/tr/g, "\t</tr")
+                .replace(/ pColorX"/g, '" style="background: rgb(0, 0, 0, 0); min-width: ' + pSize + 'px; height: ' + pSize + 'px;"')
+                .replace(/ class="\w*"/g, "")
+                .replace('table', 'table style="border: solid 0px; border-collapse: collapse;"')
+                ;
+        });
+    });
 });
