@@ -61,6 +61,18 @@
     background-size: cover;
 }
 
+#pGenerate #pTextGenerate, #pGenerate pCSSGenerate{
+    width: 60%;
+}
+
+#pGenerate #pTextGenerate, #pGenerate pCSSGenerate {
+    width: 40%;
+    height: 200px;
+    word-wrap: break-word;
+    text-align: justify;
+    overflow: auto;
+}
+
 #pTdColor0 {
     background-color: #FF8080;
 }
